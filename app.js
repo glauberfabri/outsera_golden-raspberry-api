@@ -13,7 +13,6 @@ const db = require('./db');
 const producerRoutes = require('./routes/producerRoutes');
 const { calculateIntervals } = require('./services/producerService'); // Importa calculateIntervals
 
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const cache = new NodeCache({ stdTTL: 600, checkperiod: 120 });
@@ -76,7 +75,7 @@ function loadMoviesData() {
         .on('end', () => {
             db.all('SELECT * FROM movies', [], (err, rows) => {
                 if (err) throw err;
-                console.log("Dados da tabela 'movies':", rows);
+                //console.log("Dados da tabela 'movies':", rows);
             });
         });
 }
@@ -188,8 +187,9 @@ app.use((err, req, res, next) => {
 });
 
 // Inicialização do servidor
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 
-
+// Exportar o app e o servidor para testes
+module.exports = { app, server };

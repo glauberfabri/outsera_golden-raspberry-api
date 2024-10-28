@@ -12,9 +12,9 @@ database.serialize(() => {
         winner INTEGER
     )`, (err) => {
         if (err) {
-            console.error("Error creating table:", err.message);
+            //console.error("Error creating table:", err.message);
         } else {
-            console.log("Table 'movies' created successfully.");
+           // console.log("Table 'movies' created successfully.");
         }
     });
 });
